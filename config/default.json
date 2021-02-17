@@ -1,0 +1,13 @@
+{
+  "App": {
+    "host": "0.0.0.0",
+    "port": "5024"
+  },
+  "S3": {
+    "region": "eu-west-2",
+    "endpoint": "http://localhost:9008",
+    "offlineKey": "S3RVER",
+    "hostUrl": "http://localhost:9008/local-bucket/images",
+    "bucketName": "local-bucket"
+  }
+}

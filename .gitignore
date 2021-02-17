@@ -1,0 +1,14 @@
+.DS_Store
+
+# package directories
+node_modules
+
+dist/*
+
+s3/*
+
+.idea/*
+
+.env
+
+.package-lock.json

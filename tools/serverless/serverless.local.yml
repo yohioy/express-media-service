@@ -1,0 +1,32 @@
+service: masteryo-local-aws
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: ${self:custom.aws_deploy_region}
+  stage: dev
+  tracing: true
+
+plugins:
+  - serverless-s3-local
+  - serverless-offline
+  - serverless-plugin-tracing
+
+custom:
+  aws_deploy_region: eu-west-2
+
+  serverless-offline:
+    port: 12009
+
+  s3:
+    host: 0.0.0.0
+    port: 9008
+    directory: s3
+
+resources:
+  Resources:
+    AssetsS3:
+      Type: 'AWS::S3::Bucket'
+      Properties:
+        BucketName: local-bucket
+

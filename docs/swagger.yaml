@@ -1,0 +1,840 @@
+openapi: 3.0.1
+info:
+  title: Page Service
+  description: This is the API for the pages
+  version: 1.0.0
+  contact:
+    email: yohantha@gmail.com
+servers:
+  - url: http://localhost:5023/api
+tags:
+  - name: pages
+    description: Everything about the Pages
+  - name: users
+    description: Everything about the Users
+  - name: consultants
+    description: Everything about the Consultants
+
+paths:
+  /pages:
+    get:
+      tags:
+        - pages
+      summary: Get all page
+      operationId: getPage
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PageList'
+        400:
+          description: Bad Request - The request was invalid or cannot be served. The exact error should be explained in the error payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseError'
+    post:
+      tags:
+        - pages
+      summary: Add a new page
+      operationId: addPage
+      requestBody:
+        description: Page object that needs to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Page'
+        required: true
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSucess'
+        400:
+          description: Bad Request - The request was invalid or cannot be served. The exact error should be explained in the error payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseError'
+
+  /pages/{pageId}:
+    get:
+      tags:
+        - pages
+      summary: Get page by Id
+      operationId: getPageById
+      parameters:
+        - name: pageId
+          in: path
+          description: ID of page to return
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageDetails'
+        400:
+          description: Bad Request - The request was invalid or cannot be served. The exact error should be explained in the error payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseError'
+
+    put:
+      tags:
+        - pages
+      summary: Update page by Id
+      operationId: updatePageById
+      parameters:
+        - name: pageId
+          in: path
+          description: ID of page to update
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Page object that needs to be updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Page'
+        required: true
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSucess'
+        400:
+          description: Bad Request - The request was invalid or cannot be served. The exact error should be explained in the error payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseError'
+
+    delete:
+      tags:
+        - pages
+      summary: Delete page by Id
+      operationId: deletePageById
+      parameters:
+        - name: pageId
+          in: path
+          description: ID of page to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSucess'
+        400:
+          description: Bad Request - The request was invalid or cannot be served. The exact error should be explained in the error payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseError'
+
+
+  /users:
+    get:
+      tags:
+        - users
+      summary: Get all users
+      operationId: getUser
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserList'
+        400:
+          description: Bad Request - The request was invalid or cannot be served. The exact error should be explained in the error payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseError'
+    post:
+      tags:
+        - users
+      summary: Add a new user
+      operationId: addUser
+      requestBody:
+        description: User object that needs to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSucess'
+        400:
+          description: Bad Request - The request was invalid or cannot be served. The exact error should be explained in the error payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseError'
+
+  /users/{userId}:
+    get:
+      tags:
+        - users
+      summary: Get user by Id
+      operationId: getUserById
+      parameters:
+        - name: userId
+          in: path
+          description: ID of user to return
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDetails'
+        400:
+          description: Bad Request - The request was invalid or cannot be served. The exact error should be explained in the error payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseError'
+
+    put:
+      tags:
+        - users
+      summary: Update user by Id
+      operationId: updateUserById
+      parameters:
+        - name: userId
+          in: path
+          description: ID of user to update
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: User object that needs to be updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSucess'
+        400:
+          description: Bad Request - The request was invalid or cannot be served. The exact error should be explained in the error payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseError'
+
+    delete:
+      tags:
+        - users
+      summary: Delete user by Id
+      operationId: deleteUserById
+      parameters:
+        - name: userId
+          in: path
+          description: ID of user to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSucess'
+        400:
+          description: Bad Request - The request was invalid or cannot be served. The exact error should be explained in the error payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseError'
+
+  /consultants:
+    get:
+      tags:
+        - consultants
+      summary: Get all consultants
+      operationId: getConsultant
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConsultantList'
+        400:
+          description: Bad Request - The request was invalid or cannot be served. The exact error should be explained in the error payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseError'
+    post:
+      tags:
+        - consultants
+      summary: Add a new consultant
+      operationId: addConsultant
+      requestBody:
+        description: Consultant object that needs to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Consultant'
+        required: true
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSucess'
+        400:
+          description: Bad Request - The request was invalid or cannot be served. The exact error should be explained in the error payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseError'
+
+  /consultants/{consultantId}:
+    get:
+      tags:
+        - consultants
+      summary: Get consultant by Id
+      operationId: getConsultantById
+      parameters:
+        - name: consultantId
+          in: path
+          description: ID of consultant to return
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsultantDetails'
+        400:
+          description: Bad Request - The request was invalid or cannot be served. The exact error should be explained in the error payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseError'
+
+    put:
+      tags:
+        - consultants
+      summary: Update consultant by Id
+      operationId: updateConsultantById
+      parameters:
+        - name: consultantId
+          in: path
+          description: ID of consultant to update
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Consultant object that needs to be updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Consultant'
+        required: true
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSucess'
+        400:
+          description: Bad Request - The request was invalid or cannot be served. The exact error should be explained in the error payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseError'
+
+    delete:
+      tags:
+        - consultants
+      summary: Delete consultant by Id
+      operationId: deleteConsultantById
+      parameters:
+        - name: consultantId
+          in: path
+          description: ID of consultant to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseSucess'
+        400:
+          description: Bad Request - The request was invalid or cannot be served. The exact error should be explained in the error payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseError'
+components:
+  schemas:
+    Page:
+      required:
+        - pageName
+      type: object
+      properties:
+        pageName:
+          type: string
+          example: pageName
+        shortDescription:
+          type: string
+          example: shortDescription
+        longDescription:
+          type: string
+          example: longDescription
+        parentPage:
+          type: string
+          example: string
+        strapLine:
+          type: string
+          example: strapLine
+        template:
+          type: string
+          example: general
+        seoFriendlyLinkId:
+          type: string
+          example: seoFriendlyLinkId
+        pageStatus:
+          type: string
+          description: page status
+          enum:
+            - publish
+            - draft
+            - future
+            - trash
+            - pending
+            - private
+
+    PageDetails:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 12121212121
+        pageName:
+          type: string
+          example: pageName
+        shortDescription:
+          type: string
+          example: shortDescription
+        longDescription:
+          type: string
+          example: longDescription
+        parentPage:
+          type: string
+          example: string
+        strapLine:
+          type: string
+          example: strapLine
+        template:
+          type: string
+          example: general
+        seoFriendlyLinkId:
+          type: string
+          example: seoFriendlyLinkId
+        pageStatus:
+          type: string
+          description: page status
+          enum:
+            - publish
+            - draft
+            - future
+            - trash
+            - pending
+            - private
+
+    PageList:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 12121212121
+        pageName:
+          type: string
+          example: pageName
+        shortDescription:
+          type: string
+          example: shortDescription
+        longDescription:
+          type: string
+          example: longDescription
+        parentPage:
+          type: string
+          example: string
+        strapLine:
+          type: string
+          example: strapLine
+        template:
+          type: string
+          example: general
+        seoFriendlyLinkId:
+          type: string
+          example: seoFriendlyLinkId
+        pageStatus:
+          type: string
+          description: page status
+          enum:
+            - publish
+            - draft
+            - future
+            - trash
+            - pending
+            - private
+
+    User:
+      required:
+        - pageName
+      type: object
+      properties:
+        email:
+          type: string
+        cognitoId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        group:
+          type: string
+        createdDate:
+          type: number
+        updatedDate:
+          type: number
+        userSatus:
+          type: string
+          description: user status
+          enum:
+            - active
+            - inactive
+            - suspended
+            - pending
+
+    UserList:
+      type: object
+      properties:
+        _id:
+          type: string
+        email:
+          type: string
+        cognitoId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        group:
+          type: string
+        createdDate:
+          type: number
+        updatedDate:
+          type: number
+        userSatus:
+          type: string
+          description: user status
+          enum:
+            - active
+            - inactive
+            - suspended
+            - pending
+
+    UserDetails:
+      type: object
+      properties:
+        email:
+          type: string
+        cognitoId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        group:
+          type: string
+        createdDate:
+          type: number
+        updatedDate:
+          type: number
+        userSatus:
+          type: string
+          description: user status
+          enum:
+            - active
+            - inactive
+            - suspended
+            - pending
+
+    Consultant:
+      required:
+        - consultantName
+      type: object
+      properties:
+        pageName:
+          type: string
+          example: pageName
+        shortDescription:
+          type: string
+          example: shortDescription
+        longDescription:
+          type: string
+          example: longDescription
+        parentPage:
+          type: string
+          example: string
+        strapLine:
+          type: string
+          example: strapLine
+        template:
+          type: string
+          example: general
+        seoFriendlyLinkId:
+          type: string
+          example: seoFriendlyLinkId
+        profileLetter:
+          type: string
+          example: A
+        qualifications:
+          type: string
+          example: qualifications
+        hospitals:
+          type: string
+          example: hospitals
+        clinicalInterests:
+          type: string
+          example: clinicalInterests
+        contactEmail:
+          type: string
+          example: contactEmail
+        contactTelephone:
+          type: string
+          example: contactTelephone
+        websiteAddress:
+          type: string
+          example: websiteAddress
+        clinicTimes:
+          type: string
+          example: clinicTimes
+        specialities:
+          type: string
+          example: specialities
+        services:
+          type: string
+          example: services
+        pageStatus:
+          type: string
+          description: page status
+          enum:
+            - publish
+            - draft
+            - future
+            - trash
+            - pending
+            - private
+
+    ConsultantDetails:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 12121212121
+        pageName:
+          type: string
+          example: pageName
+        shortDescription:
+          type: string
+          example: shortDescription
+        longDescription:
+          type: string
+          example: longDescription
+        parentPage:
+          type: string
+          example: string
+        strapLine:
+          type: string
+          example: strapLine
+        template:
+          type: string
+          example: general
+        seoFriendlyLinkId:
+          type: string
+          example: seoFriendlyLinkId
+        profileLetter:
+          type: string
+          example: A
+        qualifications:
+          type: string
+          example: qualifications
+        hospitals:
+          type: string
+          example: hospitals
+        clinicalInterests:
+          type: string
+          example: clinicalInterests
+        contactEmail:
+          type: string
+          example: contactEmail
+        contactTelephone:
+          type: string
+          example: contactTelephone
+        websiteAddress:
+          type: string
+          example: websiteAddress
+        clinicTimes:
+          type: string
+          example: clinicTimes
+        specialities:
+          type: string
+          example: specialities
+        services:
+          type: string
+          example: services
+        pageStatus:
+          type: string
+          description: page status
+          enum:
+            - publish
+            - draft
+            - future
+            - trash
+            - pending
+            - private
+
+    ConsultantList:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 12121212121
+        pageName:
+          type: string
+          example: pageName
+        shortDescription:
+          type: string
+          example: shortDescription
+        longDescription:
+          type: string
+          example: longDescription
+        parentPage:
+          type: string
+          example: string
+        strapLine:
+          type: string
+          example: strapLine
+        template:
+          type: string
+          example: general
+        seoFriendlyLinkId:
+          type: string
+          example: seoFriendlyLinkId
+        profileLetter:
+          type: string
+          example: A
+        qualifications:
+          type: string
+          example: qualifications
+        hospitals:
+          type: string
+          example: hospitals
+        clinicalInterests:
+          type: string
+          example: clinicalInterests
+        contactEmail:
+          type: string
+          example: contactEmail
+        contactTelephone:
+          type: string
+          example: contactTelephone
+        websiteAddress:
+          type: string
+          example: websiteAddress
+        clinicTimes:
+          type: string
+          example: clinicTimes
+        specialities:
+          type: string
+          example: specialities
+        services:
+          type: string
+          example: services
+        pageStatus:
+          type: string
+          description: page status
+          enum:
+            - publish
+            - draft
+            - future
+            - trash
+            - pending
+            - private
+
+    ApiResponseSucess:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+          example: success
+
+    ApiResponseError:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        more_info:
+          type: string
